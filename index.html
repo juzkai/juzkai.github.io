@@ -157,6 +157,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-flex" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/03/flex/">flex属性理解</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/03/flex/" class="archive-article-date">
+  	<time datetime="2018-07-03T03:27:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h3><p>flex 属性用于设置或检索弹性盒模型对象的子元素如何分配空间<br>flex 属性是 flex-grow、flex-shrink 和 flex-basis 属性的简写属性</p>
+<h3 id="属性值"><a href="#属性值" class="headerlink" title="属性值"></a>属性值</h3><p>flex-grow 一个数字，规定项目将相对于其他灵活的项目进行扩展的量<br>flex-shrink 一个数字，规定项目将相对于其他灵活的项目进行收缩的量<br>flex-basis 项目的长度。合法值：”auto”、”inherit” 或一个后跟 “%”、”px”、”em” 或任何其他长度单位的数字<br>flex: auto; 相当于flex: 1 1 auto;<br>flex: none; 相当于flex: 0 0 auto;<br>flex: initial; 即该属性默认值flex: 0 1 auto;<br>flex: inherit;从父元素继承该属性</p>
+<h3 id="对于剩余分配空间的理解"><a href="#对于剩余分配空间的理解" class="headerlink" title="对于剩余分配空间的理解"></a>对于剩余分配空间的理解</h3><h5 id="1、flex容器"><a href="#1、flex容器" class="headerlink" title="1、flex容器"></a>1、flex容器</h5><p>一个元素通过设置display: flex;成为弹性容器，即flexbox容器，其子元素成为容器成员。</p>
+<h5 id="2、剩余空间"><a href="#2、剩余空间" class="headerlink" title="2、剩余空间"></a>2、剩余空间</h5><p>即弹性容器在flex-direction（默认为row）方向剩余未分配空间，举个例子来说：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"container"</span>&gt;</span><br><span class="line">  &lt;div class=<span class="string">"box box1"</span>&gt;box1&lt;/div&gt;</span><br><span class="line">  &lt;div class=<span class="string">"box box2"</span>&gt;box2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: row;</span><br><span class="line">  width: 600px;</span><br><span class="line">  height: 150px;</span><br><span class="line">  align-items: center;</span><br><span class="line">  background-color: <span class="comment">#ddd;</span></span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  left: 50%;</span><br><span class="line">  margin-top: -75px;</span><br><span class="line">  margin-left: -300px;</span><br><span class="line">  overflow: auto;</span><br><span class="line">&#125;</span><br><span class="line">.box &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 120px;</span><br><span class="line">  line-height: 120px;</span><br><span class="line">  text-align: center;	</span><br><span class="line">  color: <span class="comment">#fff;</span></span><br><span class="line">&#125;</span><br><span class="line">.box1&#123;			  </span><br><span class="line">  background-color: green;</span><br><span class="line">&#125;</span><br><span class="line">.box2 &#123;</span><br><span class="line">  background-color: orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2018/07/03/flex/flex-box1.png">
+<p>以上代码中，父容器宽带为600px,两个子元素宽度之和为400px,则剩下的200px为可分配空间。</p>
+<h5 id="3、剩余空间分配"><a href="#3、剩余空间分配" class="headerlink" title="3、剩余空间分配"></a>3、剩余空间分配</h5><h6 id="将box1添加flex-grow-1"><a href="#将box1添加flex-grow-1" class="headerlink" title="将box1添加flex-grow: 1;"></a>将box1添加flex-grow: 1;</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.box1&#123;			  </span><br><span class="line">  background-color: green;</span><br><span class="line">  flex-grow: 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2018/07/03/flex/flex-box2.png">
+<p>可以看到box1的宽度变成了400px,即原先剩余可分配的200px分到了box1上。</p>
+<h6 id="同样在box2添加一个flex-grow-3"><a href="#同样在box2添加一个flex-grow-3" class="headerlink" title="同样在box2添加一个flex-grow: 3;"></a>同样在box2添加一个flex-grow: 3;</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.box1&#123;			  </span><br><span class="line">  background-color: green;</span><br><span class="line">  flex-grow: 1;</span><br><span class="line">&#125;</span><br><span class="line">.box2 &#123;</span><br><span class="line">  background-color: orange;</span><br><span class="line">  flex-grow: 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2018/07/03/flex/flex-box3.png">
+<p>此时，剩余的200px被分成了1+3=4份，box1被分配了1份，宽度变为200px+50px=250px；box2被分配了3份，宽度变为200px+150px=350px。</p>
+<h6 id="以上都是子元素宽度之和没有超过父元素的宽度，当我们把两个子元素的宽度都设置成400px时候："><a href="#以上都是子元素宽度之和没有超过父元素的宽度，当我们把两个子元素的宽度都设置成400px时候：" class="headerlink" title="以上都是子元素宽度之和没有超过父元素的宽度，当我们把两个子元素的宽度都设置成400px时候："></a>以上都是子元素宽度之和没有超过父元素的宽度，当我们把两个子元素的宽度都设置成400px时候：</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">  width: 400px;</span><br><span class="line">  height: 120px;</span><br><span class="line">  line-height: 120px;</span><br><span class="line">  text-align: center;	</span><br><span class="line">  color: <span class="comment">#fff;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2018/07/03/flex/flex-box4.png">
+<p>发现，flex-grow并没有起作用，子元素的宽度都被压缩到了300px。</p>
+<h5 id="而在上面有提到flex-shrink属性，来控制元素收缩的量，其默认值为1，当子元素宽度之和超过父元素时，子元素会按比例压缩。"><a href="#而在上面有提到flex-shrink属性，来控制元素收缩的量，其默认值为1，当子元素宽度之和超过父元素时，子元素会按比例压缩。" class="headerlink" title="而在上面有提到flex-shrink属性，来控制元素收缩的量，其默认值为1，当子元素宽度之和超过父元素时，子元素会按比例压缩。"></a>而在上面有提到flex-shrink属性，来控制元素收缩的量，其默认值为1，当子元素宽度之和超过父元素时，子元素会按比例压缩。</h5><p>所以在上面，当我们设置两个子元素宽度都是400px时，超出了父元素200px，这200px按照默认的1:1的比例对box1和box2进行了压缩，宽度变成了400px-100px=300px;此时的剩余可分配空间可以看成超出的这200px,即-200px。<br>同样当我们把box1的flex-shrink设为3，box1和box2按照3:1比例缩放：<br><img src="/2018/07/03/flex/flex-box5.png"></p>
+<h5 id="当把子元素的flex-shrink属性都设为0，不自行压缩的时候："><a href="#当把子元素的flex-shrink属性都设为0，不自行压缩的时候：" class="headerlink" title="当把子元素的flex-shrink属性都设为0，不自行压缩的时候："></a>当把子元素的flex-shrink属性都设为0，不自行压缩的时候：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.box1&#123;			  </span><br><span class="line">  background-color: green;</span><br><span class="line">  flex-grow: 1;</span><br><span class="line">  flex-shrink: 0;</span><br><span class="line">&#125;</span><br><span class="line">.box2 &#123;</span><br><span class="line">  background-color: orange;</span><br><span class="line">  flex-grow: 3;</span><br><span class="line">  flex-shrink: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2018/07/03/flex/flex-box6.png">
+<p>可以看出box1和box2都成了400px，并没有被压缩</p>
+<h3 id="附：通常在做同一父元素下，一个div宽度固定，另一个div自适应的时候，可以使用flex布局："><a href="#附：通常在做同一父元素下，一个div宽度固定，另一个div自适应的时候，可以使用flex布局：" class="headerlink" title="附：通常在做同一父元素下，一个div宽度固定，另一个div自适应的时候，可以使用flex布局："></a>附：通常在做同一父元素下，一个div宽度固定，另一个div自适应的时候，可以使用flex布局：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.box1&#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  background-color: green;</span><br><span class="line">&#125;</span><br><span class="line">.box2 &#123;</span><br><span class="line">  background-color: orange;</span><br><span class="line">  flex: 1; // flex: auto</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2018/07/03/flex/flex-box7.png">
+<h5 id="另外一定要注意flex在各个浏览器的兼容性"><a href="#另外一定要注意flex在各个浏览器的兼容性" class="headerlink" title="另外一定要注意flex在各个浏览器的兼容性"></a>另外一定要注意flex在各个浏览器的兼容性</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */</span><br><span class="line">display: -moz-box; /* Firefox 17- */</span><br><span class="line">display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */</span><br><span class="line">display: -moz-flex; /* Firefox 18+ */</span><br><span class="line">display: -ms-flexbox; /* IE 10 */</span><br><span class="line">display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/03/flex/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -409,6 +504,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
