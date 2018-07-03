@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://juzkai.github.io/2018/07/03/flex/flex-box5.png">
 <meta property="og:image" content="https://juzkai.github.io/2018/07/03/flex/flex-box6.png">
 <meta property="og:image" content="https://juzkai.github.io/2018/07/03/flex/flex-box7.png">
-<meta property="og:updated_time" content="2018-07-03T08:42:17.857Z">
+<meta property="og:updated_time" content="2018-07-03T08:47:14.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flex属性理解">
 <meta name="twitter:description" content="定义和用法flex 属性用于设置或检索弹性盒模型对象的子元素如何分配空间flex 属性是 flex-grow、flex-shrink 和 flex-basis 属性的简写属性 属性值flex-grow 一个数字，规定项目将相对于其他灵活的项目进行扩展的量flex-shrink 一个数字，规定项目将相对于其他灵活的项目进行收缩的量flex-basis 项目的长度。合法值：”auto”、”inheri">
@@ -189,7 +189,7 @@
       
         <h3 id="定义和用法"><a href="#定义和用法" class="headerlink" title="定义和用法"></a>定义和用法</h3><p>flex 属性用于设置或检索弹性盒模型对象的子元素如何分配空间<br>flex 属性是 flex-grow、flex-shrink 和 flex-basis 属性的简写属性</p>
 <h3 id="属性值"><a href="#属性值" class="headerlink" title="属性值"></a>属性值</h3><p>flex-grow 一个数字，规定项目将相对于其他灵活的项目进行扩展的量<br>flex-shrink 一个数字，规定项目将相对于其他灵活的项目进行收缩的量<br>flex-basis 项目的长度。合法值：”auto”、”inherit” 或一个后跟 “%”、”px”、”em” 或任何其他长度单位的数字<br>flex: auto; 相当于flex: 1 1 auto;<br>flex: none; 相当于flex: 0 0 auto;<br>flex: initial; 即该属性默认值flex: 0 1 auto;<br>flex: inherit;从父元素继承该属性</p>
-<h3 id="对于剩余分配空间的理解"><a href="#对于剩余分配空间的理解" class="headerlink" title="对于剩余分配空间的理解"></a>对于剩余分配空间的理解</h3><h5 id="1、flex容器"><a href="#1、flex容器" class="headerlink" title="1、flex容器"></a>1、flex容器</h5><p>一个元素通过设置display: flex;成为弹性容器，即flexbox容器，其子元素成为容器成员。</p>
+<h3 id="对于剩余分配空间的理解"><a href="#对于剩余分配空间的理解" class="headerlink" title="对于剩余分配空间的理解"></a>对于剩余分配空间的理解</h3><h5 id="1、flex容器"><a href="#1、flex容器" class="headerlink" title="1、flex容器"></a>1、flex容器</h5><p>一个元素通过设置display: flex;成为弹性容器，即flexbox容器，其子元素成为容器成员。<br><a id="more"></a></p>
 <h5 id="2、剩余空间"><a href="#2、剩余空间" class="headerlink" title="2、剩余空间"></a>2、剩余空间</h5><p>即弹性容器在flex-direction（默认为row）方向剩余未分配空间，举个例子来说：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"container"</span>&gt;</span><br><span class="line">  &lt;div class=<span class="string">"box box1"</span>&gt;box1&lt;/div&gt;</span><br><span class="line">  &lt;div class=<span class="string">"box box2"</span>&gt;box2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: row;</span><br><span class="line">  width: 600px;</span><br><span class="line">  height: 150px;</span><br><span class="line">  align-items: center;</span><br><span class="line">  background-color: <span class="comment">#ddd;</span></span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  left: 50%;</span><br><span class="line">  margin-top: -75px;</span><br><span class="line">  margin-left: -300px;</span><br><span class="line">  overflow: auto;</span><br><span class="line">&#125;</span><br><span class="line">.box &#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 120px;</span><br><span class="line">  line-height: 120px;</span><br><span class="line">  text-align: center;	</span><br><span class="line">  color: <span class="comment">#fff;</span></span><br><span class="line">&#125;</span><br><span class="line">.box1&#123;			  </span><br><span class="line">  background-color: green;</span><br><span class="line">&#125;</span><br><span class="line">.box2 &#123;</span><br><span class="line">  background-color: orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <img src="/2018/07/03/flex/flex-box1.png">
@@ -441,15 +441,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
